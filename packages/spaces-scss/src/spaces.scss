@@ -1,0 +1,208 @@
+@import './config';
+
+////
+/// Spaces Flex Grid
+///
+/// @todo Finish Documenting
+///
+/// @group flexGrid
+/// @access private
+/// @author whilejoe <joe@whilejoe.com>
+////
+
+// Increment Generator
+@function _increments($increments) {
+  $list: ();
+
+  @each $increment in $increments {
+    $quotient: 100 / $increment;
+    @for $i from 1 through $quotient {
+      $list: append($list, $i * $increment);
+    }
+  }
+
+  @return $list;
+}
+
+
+//
+// Grid Structure
+//
+
+// Grid spacing
+@mixin _increment-rulesets($increments, $increment-name) {
+  $increments: _increments($increments);
+
+  @each $increment in $increments {
+    .#{$increment-name}-#{round($increment)} {
+      flex: 0 0 #{$increment * 1%};
+      max-width: #{$increment * 1%};
+    }
+  }
+
+  // be the size of it's content
+  .#{$increment-name + '-' + $flex-self-name} {
+    flex: 0 1 auto;
+    max-width: none;
+  }
+
+  // create a sizing reset to revert to default flex behavior
+  .#{$increment-name + '-' + $flex-reset-name} {
+    flex: 1 1 0%;
+    max-width: none;
+  }
+}
+
+// Offset spacing
+@mixin _offset-rulesets($increments, $offset-name) {
+  $increments: _increments($increments);
+
+  @each $increment in $increments {
+    .#{$offset-name}-#{round($increment)} {
+      margin-left: #{$increment * 1%};
+    }
+  }
+
+  // create a reset to undo offset
+  .#{$offset-name + '-' + $flex-reset-name} { margin-left: 0 !important; } // TODO: Do we need the trump?
+}
+
+// Call Grid Mixins
+@mixin _grid() {
+  @include _increment-rulesets($flex-increments, $flex-increment-name);
+  @include _offset-rulesets($flex-increments, $flex-offset-name);
+
+  @each $size, $value in $breakpoints {
+    $size-modifier: '-' + $size;
+
+    @media screen and (min-width: #{$value}) {
+      @include _increment-rulesets($flex-increments, $flex-increment-name + $size-modifier);
+      @include _offset-rulesets($flex-increments, $flex-offset-name + $size-modifier);
+    }
+  }
+}
+
+
+//
+// Grid Utilities
+//
+
+// Flex Justify
+@mixin _justify-rulesets($name, $props) {
+  @each $prop in $props {
+    .#{$name}-#{$prop} { justify-content: #{$prop}; }
+  }
+}
+
+// Flex Align
+@mixin _align-rulesets($name, $props) {
+  @each $prop in $props {
+    .#{$name}-#{$prop} { align-items: #{$prop}; }
+  }
+}
+
+// Flex Order
+@mixin _order-rulesets($name) {
+  @for $i from -5 through 5 {
+    .#{$name}-#{$i} { order: #{$i}; }
+  }
+
+  // create a reset to undo order
+  .#{$name}-#{$flex-reset-name} { order: 0 !important; } // TODO: Do we need the trump?
+}
+
+// Visibility
+@mixin _visibility-rulesets($size-modifier: null) {
+  .show#{$size-modifier}.#{$flex-container-name} { display: flex !important; }
+  .show#{$size-modifier}.#{$flex-item-name} { display: block !important; }
+  .hide#{$size-modifier} { display: none !important; }
+}
+
+// Call Grid Utility Mixins
+@mixin _grid-utils() {
+  @include _justify-rulesets($flex-justify-name, $flex-justify-props);
+  @include _align-rulesets($flex-align-name, $flex-align-props);
+  @include _order-rulesets($flex-order-name);
+  @include _visibility-rulesets();
+
+  @each $size, $value in $breakpoints {
+    $size-modifier: '-' + $size;
+
+    @media screen and (min-width: #{$value}) {
+      @include _justify-rulesets($flex-justify-name + $size-modifier, $flex-justify-props);
+      @include _align-rulesets($flex-align-name + $size-modifier, $flex-align-props);
+      @include _order-rulesets($flex-order-name + $size-modifier);
+      @include _visibility-rulesets($size-modifier);
+    }
+  }
+}
+
+
+//
+// Base
+//
+
+// Default Flex Container
+.#{$flex-container-name} {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+// Flex Column
+.#{$flex-container-column-name} {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  // needed for inconsistent browser rendering of flex columns
+  & > .#{$flex-container-name},
+    > .#{$flex-item-name} {
+      flex: 0 0 auto !important;
+      max-width: none;
+  }
+}
+
+// Flex Item
+.#{$flex-item-name} {
+  display: block;
+  flex: 1 1 0%;
+  box-sizing: border-box;
+}
+
+
+//
+// Base Modifiers
+//
+.no-wrap { flex-wrap: nowrap; }
+
+.#{$flex-gutter-name} {
+  margin-right: -$flex-gutter;
+  margin-left: -$flex-gutter;
+
+  > .#{$flex-container-name},
+  > .#{$flex-item-name} {
+    padding-right: $flex-gutter;
+    padding-left: $flex-gutter;
+  }
+}
+
+.#{$flex-gutter-vertical-name} {
+  margin-top: -$flex-gutter-vertical;
+  margin-bottom: -$flex-gutter-vertical;
+
+  > .#{$flex-container-name},
+  > .#{$flex-item-name} {
+    margin-top: $flex-gutter-vertical;
+    margin-bottom: $flex-gutter-vertical;
+  }
+}
+
+// Call Grid
+@include _grid();
+
+// Call Grid Utilities
+@include _grid-utils();

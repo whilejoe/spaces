@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    ["styled-components", { "transpileTemplateLiterals": true }],
+    "@babel/plugin-proposal-object-rest-spread"
+  ]
+}
