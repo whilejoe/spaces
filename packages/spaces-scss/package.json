@@ -1,0 +1,25 @@
+{
+  "name": "spaces-scss",
+  "version": "0.9.3-0",
+  "description": "SCSS Flexbox Grid",
+  "homepage": "https://codepen.io/malea78478/pen/bpXaLw",
+  "keywords": [
+    "flex",
+    "flexbox",
+    "scss",
+    "grid"
+  ],
+  "author": "Joe Piemeisel",
+  "license": "MIT",
+  "repository": "github:whilejoe/spaces",
+  "main": "src/spaces.scss",
+  "scripts": {
+    "build-css": "mkdirp dist && node-sass-chokidar --output-style compressed src/spaces.scss > dist/spaces.min.css",
+    "prepublishOnly": "npm run build-css"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "node-sass-chokidar": "^1.2.0",
+    "prettier": "^1.11.1"
+  }
+}
