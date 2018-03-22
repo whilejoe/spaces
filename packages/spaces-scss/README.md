@@ -5,7 +5,7 @@ SCSS Flex Grid
 ## Install
 
 ```
-yarn add space-scss
+yarn add spaces-scss
 or
-npm i space-scss
+npm i spaces-scss
 ```
