@@ -14,9 +14,7 @@
   "author": "Joe Piemeisel",
   "license": "MIT",
   "repository": "github:whilejoe/spaces",
-  "main": "dist/spaces-styled.cjs.js",
-  "module": "dist/spaces-styled.esm.js",
-  "browser": "dist/spaces-styled.umd.js",
+  "main": "dist/spaces-styled.js",
   "files": [
     "dist"
   ],
@@ -28,6 +26,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.55",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.55",
     "@babel/preset-env": "^7.0.0-beta.55",
     "@babel/preset-react": "^7.0.0-beta.55",
     "babel-cli": "^6.26.0",
@@ -42,5 +41,8 @@
     "rollup-plugin-commonjs": "^9.1.4",
     "rollup-plugin-node-resolve": "3.3.0",
     "styled-components": "^3.3.3"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.55"
   }
 }
