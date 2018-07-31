@@ -33,7 +33,18 @@ export default {
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
-      presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              browsers: ['last 2 versions', 'safari >= 7']
+            },
+            modules: false
+          }
+        ],
+        '@babel/preset-react'
+      ],
       plugins: [['babel-plugin-styled-components', { transpileTemplateLiterals: true }]]
     })
   ],
