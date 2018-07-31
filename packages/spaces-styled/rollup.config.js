@@ -1,20 +1,41 @@
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import pkg from './package.json';
+
+const GLOBALS = {
+  'styled-components': 'styled'
+};
 
 export default {
   input: 'src/index.js',
-  output: {
-    file: 'lib/spaces-styled.js',
-    format: 'es',
-    globals: {
-      'styled-components': 'styled',
+  output: [
+    {
+      file: pkg.main,
+      format: 'cjs',
+      globals: GLOBALS
     },
-  },
+    {
+      file: pkg.module,
+      format: 'es',
+      globals: GLOBALS
+    },
+    {
+      file: pkg.browser,
+      format: 'umd',
+      name: 'Spaces',
+      globals: GLOBALS
+    }
+  ],
   plugins: [
     resolve(),
+    commonjs(),
     babel({
+      babelrc: false,
       exclude: 'node_modules/**',
-    }),
+      presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
+      plugins: [['babel-plugin-styled-components', { transpileTemplateLiterals: true }]]
+    })
   ],
-  external: ['styled-components'],
+  external: ['react', 'styled-components']
 };

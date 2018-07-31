@@ -1,7 +1,10 @@
 {
-  "lerna": "2.9.0",
+  "lerna": "2.11.0",
   "packages": [
     "packages/*"
   ],
-  "version": "independent"
+  "version": "independent",
+  "owners": [
+    "whilejoe"
+  ]
 }
