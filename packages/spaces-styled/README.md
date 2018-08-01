@@ -1,6 +1,6 @@
 # Spaces Styled
 
-Flex Grid for [styled-components](https://github.com/styled-components/styled-components)
+_Flex grid components for React built with [styled-components](https://github.com/styled-components/styled-components)_
 
 ## Install
 
