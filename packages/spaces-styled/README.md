@@ -45,7 +45,7 @@ Grids can be nested. Flex can be a sibling to FlexContent
 
 ### Prop: space
 
-Number, Object, Array<br/>
+Number, String, Object, Array<br/>
 Sum greater than 100 will wrap to next line.<br/>
 Works with breakpoints e.g. `space={[30, {sm: 50, md: 70}]}`.<br/>
 Also accepts: __'self'__ which will only take up the space of its content.<br/>
@@ -74,7 +74,7 @@ Components: Flex, FlexColumn
 
 ### Prop: offset
 
-Number, Object, Array<br/>
+Number, String, Object, Array<br/>
 Works with breakpoints e.g. `offset={[5, {sm: 10, md: 0}]}`.<br/>
 Components: Flex, FlexColumn, FlexContent
 
@@ -139,7 +139,7 @@ Components: Flex, FlexColumn
     <tbody>
         <tr>
           <td>space</td>
-          <td>String, Number, Array</td>
+          <td>Number, String Object, Array</td>
           <td></td>
           <td>Percentage of space consumed</td>
         </tr>
@@ -157,25 +157,25 @@ Components: Flex, FlexColumn
         </tr>
         <tr>
           <td>offset</td>
-          <td>String, Number, Array</td>
+          <td>Number, String, Object, Array</td>
           <td></td>
           <td>Offsets flex item from sibling before</td>
         </tr>
         <tr>
           <td>hide</td>
-          <td>Boolean, Array</td>
+          <td>Boolean, Object, Array</td>
           <td>false</td>
           <td>Whether flex item is visible or not</td>
         </tr>
         <tr>
           <td>justify</td>
-          <td>String, Array</td>
+          <td>String, Object, Array</td>
           <td>flex-start (Flexbox spec) https://css-tricks.com/snippets/css/a-guide-to-flexbox/</td>
           <td>Alignment along the horizontal axis</td>
         </tr>
         <tr>
           <td>align</td>
-          <td>String, Array</td>
+          <td>String, Object, Array</td>
           <td>stretch (Flexbox spec) https://css-tricks.com/snippets/css/a-guide-to-flexbox/</td>
           <td>Alignment along the vertical axis</td>
         </tr>
@@ -192,6 +192,5 @@ Components: Flex, FlexColumn
 The flexbox spec has had a troubled past. If you're having issues, it's most likely due to a specific browser's implementation and has been captured here:
 <br/>https://github.com/philipwalton/flexbugs
 
-# License
-
+### License
 MIT
