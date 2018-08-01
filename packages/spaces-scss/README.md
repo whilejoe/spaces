@@ -1,6 +1,6 @@
-# Space SCSS - WIP
+# Spaces SCSS(WIP)
 
-SCSS Flex Grid
+SCSS Flexbox Grid
 
 ## Install
 
