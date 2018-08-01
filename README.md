@@ -1,3 +1,4 @@
-# spaces (WIP)
+# spaces
 
-Space Flexbox Grid Monorepo
+Flexbox Grid Monorepo</br>
+See individual packages for readme
