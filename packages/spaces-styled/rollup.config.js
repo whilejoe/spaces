@@ -1,6 +1,5 @@
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
-// import commonjs from 'rollup-plugin-commonjs';
 
 export default {
   input: 'src/index.js',
@@ -13,7 +12,6 @@ export default {
   },
   plugins: [
     resolve(),
-    // commonjs(),
     babel({
       babelrc: false,
       runtimeHelpers: true,
@@ -24,7 +22,7 @@ export default {
           '@babel/preset-env',
           {
             targets: {
-              browsers: ['last 2 versions', 'safari >= 7']
+              browsers: ['last 2 versions', 'safari >= 8']
             },
             modules: false
           }
@@ -36,8 +34,6 @@ export default {
           {
             useESModules: true,
             useBuiltIns: true
-            // helpers: false,
-            // polyfill: false
           }
         ],
         ['babel-plugin-styled-components', { transpileTemplateLiterals: true }]

@@ -1,4 +1,4 @@
-# Spaces Styled - WIP
+# Spaces Styled
 
 Flex Grid for styled-components
 
@@ -8,24 +8,184 @@ Flex Grid for styled-components
 yarn add spaces-styled
 or
 npm i spaces-styled
-
 ```
 
-## Usage
+## Examples
+
+### Basic Usage
+
+By default Flex/FlexContent will align in a row and consume an equal amount of space.
 
 ```jsx
 import React from 'react';
-import Flex, { FlexItem } from 'spaces-styled';
+import { Flex, FlexContent } from 'spaces-styled';
 
 export default () => (
-  <Flex gutters>
-    <FlexContent space={30}>30%</FlexContent>
-    <FlexContent space={70}>70%</FlexContent>
+  <Flex>
+    <FlexContent />
+    <FlexContent />
+    <FlexContent />
   </Flex>
 );
 ```
 
-## Props
+#### Nested
+
+Grids can be nested. Flex can be a sibling to FlexContent
+
+```jsx
+<Flex>
+  <FlexContent />
+  <Flex>
+    <FlexContent />
+    <FlexContent />
+  </Flex>
+</Flex>
+```
+
+### Prop: space
+
+Number, Object, Array
+Sum greater than 100 will wrap to next line.
+Works with breakpoints eg `space={[30, {sm: 50, md: 70}]}`.
+Components: Flex, FlexColumn, FlexContent
+
+```jsx
+<Flex>
+  <FlexContent space={30} />
+  <FlexContent space={70} />
+</Flex>
+```
+
+### Prop: gutters/guttersVertical
+
+Boolean
+Adds horizontal or vertical gutters.
+_Can be used together. Vertical gutters kick in when items stack._
+Components: Flex, FlexColumn
+
+```jsx
+<Flex gutters guttersVertical>
+  <FlexContent space={30} />
+  <FlexContent space={[70, { sm: 100 }]} />
+</Flex>
+```
+
+### Prop: offset
+
+Number, Object, Array
+Works with breakpoints eg `offset={[5, {sm: 10, md: 0}]}`.
+Components: Flex, FlexColumn, FlexContent
+
+```jsx
+<Flex>
+  <FlexContent />
+  <FlexContent offset={[5, { sm: 10, md: 0 }]} />
+</Flex>
+```
+
+### Prop: hide
+
+Boolean
+Works with breakpoints eg `hide={[true, {sm: false}]}`.
+Components: Flex, FlexColumn, FlexContent
+
+```jsx
+<Flex>
+  <FlexContent hide={[true, { sm: false }]} />
+</Flex>
+```
+
+### Prop: justify
+
+String, Object, Array
+Works with breakpoints eg `justify={{md: 'space-between'}}`.
+Components: Flex, FlexColumn
+
+```jsx
+// Justifies items with space between
+<Flex justify="space-between">
+  <FlexContent space={25} />
+  <FlexContent space={25} />
+</Flex>
+```
+
+### Prop: align
+
+String, Object, Array
+Works with breakpoints eg `align={{md: 'center'}}`.
+Components: Flex, FlexColumn
+
+```jsx
+// Aligns items on vertical axis
+<Flex align="center">
+  <FlexContent style={{ height: '100px' }} />
+  <FlexContent style={{ height: '200px' }} />
+</Flex>
+```
+
+## All Props
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th style="width: 100px;">Name</th>
+        <th style="width: 50px;">Type</th>
+        <th style="width: 50px;">Default</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>space</td>
+          <td>String, Number, Array</td>
+          <td></td>
+          <td>Percentage of space consumed</td>
+        </tr>
+        <tr>
+          <td>gutters</td>
+          <td>Boolean</td>
+          <td>false</td>
+          <td>Horizontal gutters between flex items</td>
+        </tr>
+        <tr>
+          <td>guttersVertical</td>
+          <td>Boolean</td>
+          <td>false</td>
+          <td>Vertical gutters between flex items when stacked</td>
+        </tr>
+        <tr>
+          <td>offset</td>
+          <td>String, Number, Array</td>
+          <td></td>
+          <td>Offsets flex item from sibling before</td>
+        </tr>
+        <tr>
+          <td>hide</td>
+          <td>Boolean, Array</td>
+          <td>false</td>
+          <td>Whether flex item is visible or not</td>
+        </tr>
+        <tr>
+          <td>justify</td>
+          <td>String, Array</td>
+          <td>flex-start (Flexbox spec) https://css-tricks.com/snippets/css/a-guide-to-flexbox/</td>
+          <td>Alignment along the horizontal axis</td>
+        </tr>
+        <tr>
+          <td>align</td>
+          <td>String, Array</td>
+          <td>stretch (Flexbox spec) https://css-tricks.com/snippets/css/a-guide-to-flexbox/</td>
+          <td>Alignment along the vertical axis</td>
+        </tr>
+        <tr>
+          <td>noWrap</td>
+          <td>boolean</td>
+          <td>wrap (Flexbox spec) https://css-tricks.com/snippets/css/a-guide-to-flexbox/</td>
+          <td>Prevents items from wrapping on horizontal axis</td>
+        </tr>
+    </tbody>
+</table>
 
 # License
 
