@@ -1,6 +1,6 @@
 # Spaces Styled
 
-Flex Grid for styled-components
+Flex Grid for [styled-components](https://github.com/styled-components/styled-components)
 
 ## Install
 
@@ -45,13 +45,14 @@ Grids can be nested. Flex can be a sibling to FlexContent
 
 ### Prop: space
 
-Number, Object, Array
-Sum greater than 100 will wrap to next line.
-Works with breakpoints eg `space={[30, {sm: 50, md: 70}]}`.
+Number, Object, Array<br/>
+Sum greater than 100 will wrap to next line.<br/>
+Works with breakpoints e.g. `space={[30, {sm: 50, md: 70}]}`.<br/>
+Also accepts: __'self'__ which will only take up the space of its content.<br/>
 Components: Flex, FlexColumn, FlexContent
 
 ```jsx
-<Flex>
+<Flex space={50}>
   <FlexContent space={30} />
   <FlexContent space={70} />
 </Flex>
@@ -59,9 +60,9 @@ Components: Flex, FlexColumn, FlexContent
 
 ### Prop: gutters/guttersVertical
 
-Boolean
-Adds horizontal or vertical gutters.
-_Can be used together. Vertical gutters kick in when items stack._
+Boolean<br/>
+Adds horizontal or vertical gutters.<br/>
+_Can be used together. Vertical gutters kick in when items stack._<br/>
 Components: Flex, FlexColumn
 
 ```jsx
@@ -73,8 +74,8 @@ Components: Flex, FlexColumn
 
 ### Prop: offset
 
-Number, Object, Array
-Works with breakpoints eg `offset={[5, {sm: 10, md: 0}]}`.
+Number, Object, Array<br/>
+Works with breakpoints e.g. `offset={[5, {sm: 10, md: 0}]}`.<br/>
 Components: Flex, FlexColumn, FlexContent
 
 ```jsx
@@ -86,8 +87,8 @@ Components: Flex, FlexColumn, FlexContent
 
 ### Prop: hide
 
-Boolean
-Works with breakpoints eg `hide={[true, {sm: false}]}`.
+Boolean<br/>
+Works with breakpoints e.g. `hide={[true, {sm: false}]}`.<br/>
 Components: Flex, FlexColumn, FlexContent
 
 ```jsx
@@ -98,8 +99,8 @@ Components: Flex, FlexColumn, FlexContent
 
 ### Prop: justify
 
-String, Object, Array
-Works with breakpoints eg `justify={{md: 'space-between'}}`.
+String, Object, Array<br/>
+Works with breakpoints e.g. `justify={{md: 'space-between'}}`.<br/>
 Components: Flex, FlexColumn
 
 ```jsx
@@ -112,8 +113,8 @@ Components: Flex, FlexColumn
 
 ### Prop: align
 
-String, Object, Array
-Works with breakpoints eg `align={{md: 'center'}}`.
+String, Object, Array<br/>
+Works with breakpoints e.g. `align={{md: 'center'}}`.<br/>
 Components: Flex, FlexColumn
 
 ```jsx
@@ -129,9 +130,9 @@ Components: Flex, FlexColumn
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
-        <th style="width: 100px;">Name</th>
-        <th style="width: 50px;">Type</th>
-        <th style="width: 50px;">Default</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
         <th>Description</th>
     </tr>
     </thead>
@@ -186,6 +187,10 @@ Components: Flex, FlexColumn
         </tr>
     </tbody>
 </table>
+
+## Flexbox Gotchas
+The flexbox spec has had a troubled past. If you're having issues, it's most likely due to a specific browser's implementation and has been captured here:
+<br/>https://github.com/philipwalton/flexbugs
 
 # License
 
