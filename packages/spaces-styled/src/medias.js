@@ -9,14 +9,22 @@ function* entries(obj) {
 }
 
 // Builds media queries
-const parseBreakSet = (breakKey, set, props) => css`
-  @media (min-width: ${BREAK_POINTS[breakKey]}) {
-    ${Object.keys(set).map(key => {
-      const method = modifiers[key];
-      return method(set[key], props);
-    })};
+const parseBreakSet = (breakKey, set, props) => {
+  const { theme } = props;
+  const themeBreakpoint = theme.breakpoints && theme.breakpoints[breakKey];
+  const breakPoint = themeBreakpoint || BREAK_POINTS[breakKey];
+
+  if (breakPoint) {
+    return css`
+      @media (min-width: ${breakPoint}) {
+        ${Object.keys(set).map(key => {
+          const method = modifiers[key];
+          return method(set[key], props);
+        })};
+      }
+    `;
   }
-`;
+};
 
 const buildMedias = props => {
   const medias = {};

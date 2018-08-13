@@ -3,24 +3,24 @@ import { Flex, FlexContent, FlexColumn } from './components';
 import { DEFAULT_FLEX, GUTTER } from './constants';
 
 // Horizontal Gutters
-const setGutters = hasGutters => css`
-  margin-right: ${hasGutters ? `-${GUTTER}` : 0};
-  margin-left: ${hasGutters ? `-${GUTTER}` : 0};
+const setGutters = (hasGutters, props) => css`
+  margin-right: ${hasGutters ? `-${props.theme.horizontalGutter || GUTTER}` : 0};
+  margin-left: ${hasGutters ? `-${props.theme.horizontalGutter || GUTTER}` : 0};
 
   & > ${Flex}, & > ${FlexContent}, & > ${FlexColumn} {
-    padding-right: ${hasGutters ? GUTTER : 0};
-    padding-left: ${hasGutters ? GUTTER : 0};
+    padding-right: ${hasGutters ? props.theme.horizontalGutter || GUTTER : 0};
+    padding-left: ${hasGutters ? props.theme.horizontalGutter || GUTTER : 0};
   }
 `;
 
 // Vertical Gutters
-const setGuttersVertical = hasGutters => css`
-  margin-top: ${hasGutters ? `-${GUTTER}` : 0};
-  margin-bottom: ${hasGutters ? `-${GUTTER}` : 0};
+const setGuttersVertical = (hasGutters, props) => css`
+  margin-top: ${hasGutters ? `-${props.theme.verticalGutter || GUTTER}` : 0};
+  margin-bottom: ${hasGutters ? `-${props.theme.verticalGutter || GUTTER}` : 0};
 
   & > ${Flex}, & > ${FlexContent}, & > ${FlexColumn} {
-    padding-top: ${hasGutters ? GUTTER : 0};
-    padding-bottom: ${hasGutters ? GUTTER : 0};
+    padding-top: ${hasGutters ? props.theme.verticalGutter || GUTTER : 0};
+    padding-bottom: ${hasGutters ? props.theme.verticalGutter || GUTTER : 0};
   }
 `;
 
@@ -65,11 +65,11 @@ const setOffset = val => {
 // props should be parsed when building media queries
 const modifiers = {
   space: val => setSpace(val),
-  gutters: hasGutters => setGutters(hasGutters),
-  guttersVertical: hasGutters => setGuttersVertical(hasGutters),
+  gutters: (hasGutters, props) => setGutters(hasGutters, props),
+  guttersVertical: (hasGutters, props) => setGuttersVertical(hasGutters, props),
   offset: val => setOffset(val),
-  hide: (shouldHide, props) => css`
-    display: ${shouldHide ? 'none' : `${props.display} !important`};
+  hide: shouldHide => css`
+    display: ${shouldHide ? 'none' : null};
   `,
   justify: val => css`
     justify-content: ${val};

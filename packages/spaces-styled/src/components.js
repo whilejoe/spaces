@@ -1,14 +1,10 @@
 import styled from 'styled-components';
-import { DEFAULT_FLEX, DISPLAY_TYPES } from './constants';
+import { DEFAULT_FLEX } from './constants';
 import buildMedias from './medias';
 
-const { BLOCK, FLEX } = DISPLAY_TYPES;
-
 // Flex Container
-export const Flex = styled.div.attrs({
-  display: FLEX
-})`
-  display: ${FLEX};
+export const Flex = styled.div`
+  display: flex;
   flex: ${DEFAULT_FLEX};
   flex-direction: row;
   flex-wrap: ${props => (props.noWrap ? 'nowrap' : 'wrap')};
@@ -18,10 +14,8 @@ export const Flex = styled.div.attrs({
 `;
 
 // Accepts Flex Item Modifiers But Contains Flow Content
-export const FlexContent = styled.div.attrs({
-  display: BLOCK
-})`
-  display: ${BLOCK};
+export const FlexContent = styled.div`
+  display: block;
   flex: ${DEFAULT_FLEX};
   box-sizing: border-box;
 
@@ -29,10 +23,8 @@ export const FlexContent = styled.div.attrs({
 `;
 
 // Flex Column Container
-export const FlexColumn = styled.div.attrs({
-  display: FLEX
-})`
-  display: ${FLEX};
+export const FlexColumn = styled.div`
+  display: flex;
   flex: ${DEFAULT_FLEX};
   flex-direction: column;
   box-sizing: border-box;
