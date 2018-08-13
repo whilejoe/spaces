@@ -32,8 +32,7 @@ export default {
         [
           '@babel/plugin-transform-runtime',
           {
-            useESModules: true,
-            useBuiltIns: true
+            useESModules: true
           }
         ],
         ['babel-plugin-styled-components', { transpileTemplateLiterals: true }]
