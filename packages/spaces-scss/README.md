@@ -1,6 +1,7 @@
-# Space SCSS - WIP
+# Spaces SCSS
 
-SCSS Flex Grid
+SCSS Flexbox Grid<br/>
+[Docs](https://codepen.io/whilejoe/full/bpXaLw/)
 
 ## Install
 
@@ -8,4 +9,138 @@ SCSS Flex Grid
 yarn add spaces-scss
 or
 npm i spaces-scss
+```
+
+## Usage
+
+#### SCSS/CSS
+```scss
+@import 'spaces-scss/src/spaces';
+// or
+@import 'spaces-scss/spaces.min.css';
+```
+
+#### ES Modules (webpack, etc)
+```js
+import 'spaces-scss/spaces.min.css';
+```
+
+#### HTML Link Tag
+```html
+<head>
+  <link rel="stylesheet" type="text/css" href="spaces-scss/spaces.min.css">
+</head>
+```
+
+### SCSS Config Variables
+_to override defaults in scss, import overrides before. ie_
+
+```scss
+@import 'spaces-config-overrides';
+@import 'spaces-scss/src/spaces';
+``` 
+
+#### Defaults
+```scss
+////
+/// Spaces Config Defaults
+///
+///
+/// @group config
+/// @access public
+////
+
+/// Small Modifier Name
+$small-modifier: "small" !default;
+
+/// Medium Modifier Name
+$medium-modifier: "medium" !default;
+
+/// Large Modifier Name
+$large-modifier: "large" !default;
+
+/// XLarge Modifier Name
+$xlarge-modifier: "xlarge" !default;
+
+/// Breakpoints.
+/// @type Map
+$breakpoints: (
+  #{$small-modifier}: 30rem,
+  #{$medium-modifier}: 48rem,
+  #{$large-modifier}: 62rem,
+  #{$xlarge-modifier}: 75rem
+) !default;
+
+/// Flex Increments.
+/// Used to generate the grid spacing, and offset modifiers.
+/// @type List
+$flex-increments: (
+  5,
+  (100 / 3)
+) !default;
+
+/// Flex Gutter.
+/// Applied to left and right
+$flex-gutter: 0.5rem !default;
+
+/// Flex Vertical Gutter.
+/// Applied to top and bottom
+$flex-gutter-vertical: $flex-gutter !default;
+
+/// Flex Container Name
+$flex-container-name: "flex" !default;
+
+/// Flex Container Column Name
+$flex-container-column-name: "flex-column" !default;
+
+/// Flex Item Name
+$flex-item-name: "flex-content" !default;
+
+/// Flex Increment Modifier Name
+$flex-increment-name: "space" !default;
+
+/// Flex Offset Modifier Name
+$flex-offset-name: "offset" !default;
+
+/// Flex Order Modifier Name
+$flex-order-name: "order" !default;
+
+/// Flex Justify Modifier Name
+$flex-justify-name: "justify" !default;
+
+/// Flex Align Modifier Name
+$flex-align-name: "align" !default;
+
+/// Flex Gutter Modifier Name
+$flex-gutter-name: "gutters" !default;
+
+/// Flex Gutter Vertical Modifier Name
+$flex-gutter-vertical-name: "gutters-vertical" !default;
+
+/// Flex Reset Modifier Name
+$flex-reset-name: "reset" !default;
+
+/// Flex Self Modifier Name
+$flex-self-name: "self" !default;
+
+/// Flex Justify Properties
+/// @type List
+$flex-justify-props: (
+  "flex-start",
+  "flex-end",
+  "center",
+  "space-between",
+  "space-around"
+) !default;
+
+/// Flex Align Properties
+/// @type List
+$flex-align-props: (
+  "flex-start",
+  "flex-end",
+  "center",
+  "space-between",
+  "space-around",
+  "stretch"
+) !default;
 ```
