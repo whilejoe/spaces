@@ -11,15 +11,15 @@ function* entries(obj) {
 // Builds media queries
 const parseBreakSet = (breakKey, set, props) => {
   const { theme } = props;
-  const themeBreakpoint = theme.breakpoints && theme.breakpoints[breakKey];
+  const themeBreakpoint = theme.breakPoints && theme.breakPoints[breakKey];
   const breakPoint = themeBreakpoint || BREAK_POINTS[breakKey];
 
   if (breakPoint) {
     return css`
       @media (min-width: ${breakPoint}) {
         ${Object.keys(set).map(key => {
-          const method = modifiers[key];
-          return method(set[key], props);
+          const modifier = modifiers[key];
+          return modifier(set[key], props);
         })};
       }
     `;
@@ -27,7 +27,7 @@ const parseBreakSet = (breakKey, set, props) => {
 };
 
 const buildMedias = props => {
-  const medias = {};
+  let medias = {};
 
   // Requires a matched modifier method to generically know which props should be parsed
   const matched = Object.keys(props)
@@ -62,7 +62,8 @@ const buildMedias = props => {
   const breakSets = Object.keys(medias).map(key => {
     const val = medias[key];
     if (typeof val === 'object') return parseBreakSet(key, val, props);
-    return modifiers[key](val, props);
+    const modifier = modifiers[key];
+    return modifier(val, props);
   });
 
   return css`

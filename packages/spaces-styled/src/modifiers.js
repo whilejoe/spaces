@@ -2,28 +2,6 @@ import { css } from 'styled-components';
 import { Flex, FlexContent, FlexColumn } from './components';
 import { DEFAULT_FLEX, GUTTER } from './constants';
 
-// Horizontal Gutters
-const setGutters = (hasGutters, props) => css`
-  margin-right: ${hasGutters ? `-${props.theme.horizontalGutter || GUTTER}` : 0};
-  margin-left: ${hasGutters ? `-${props.theme.horizontalGutter || GUTTER}` : 0};
-
-  & > ${Flex}, & > ${FlexContent}, & > ${FlexColumn} {
-    padding-right: ${hasGutters ? props.theme.horizontalGutter || GUTTER : 0};
-    padding-left: ${hasGutters ? props.theme.horizontalGutter || GUTTER : 0};
-  }
-`;
-
-// Vertical Gutters
-const setGuttersVertical = (hasGutters, props) => css`
-  margin-top: ${hasGutters ? `-${props.theme.verticalGutter || GUTTER}` : 0};
-  margin-bottom: ${hasGutters ? `-${props.theme.verticalGutter || GUTTER}` : 0};
-
-  & > ${Flex}, & > ${FlexContent}, & > ${FlexColumn} {
-    padding-top: ${hasGutters ? props.theme.verticalGutter || GUTTER : 0};
-    padding-bottom: ${hasGutters ? props.theme.verticalGutter || GUTTER : 0};
-  }
-`;
-
 // number/'number' tells item to take up x amount of total flex space
 // 'reset' resets to default flex spacing. helpful when overriding
 // 'self' tells item to be the size of its content
@@ -47,6 +25,28 @@ const setSpace = val => {
   }
 };
 
+// Horizontal Gutters
+const setGutters = (hasGutters, props) => css`
+  margin-right: ${hasGutters ? `-${props.theme.horizontalGutter || GUTTER}` : 0};
+  margin-left: ${hasGutters ? `-${props.theme.horizontalGutter || GUTTER}` : 0};
+
+  & > ${Flex}, & > ${FlexContent}, & > ${FlexColumn} {
+    padding-right: ${hasGutters ? props.theme.horizontalGutter || GUTTER : 0};
+    padding-left: ${hasGutters ? props.theme.horizontalGutter || GUTTER : 0};
+  }
+`;
+
+// Vertical Gutters
+const setGuttersVertical = (hasGutters, props) => css`
+  margin-top: ${hasGutters ? `-${props.theme.verticalGutter || GUTTER}` : 0};
+  margin-bottom: ${hasGutters ? `-${props.theme.verticalGutter || GUTTER}` : 0};
+
+  & > ${Flex}, & > ${FlexContent}, & > ${FlexColumn} {
+    padding-top: ${hasGutters ? props.theme.verticalGutter || GUTTER : 0};
+    padding-bottom: ${hasGutters ? props.theme.verticalGutter || GUTTER : 0};
+  }
+`;
+
 // Offset
 const setOffset = val => {
   const parsedVal = parseInt(val, 10);
@@ -61,6 +61,20 @@ const setOffset = val => {
   }
 };
 
+// Order
+const setOrder = val => {
+  const parsedVal = parseInt(val, 10);
+  if (parsedVal || parsedVal === 0) {
+    return css`
+      order: ${parsedVal};
+    `;
+  } else if (val === 'reset') {
+    return css`
+      order: 0;
+    `;
+  }
+};
+
 // Method and prop names match to generically know which
 // props should be parsed when building media queries
 const modifiers = {
@@ -68,6 +82,7 @@ const modifiers = {
   gutters: (hasGutters, props) => setGutters(hasGutters, props),
   guttersVertical: (hasGutters, props) => setGuttersVertical(hasGutters, props),
   offset: val => setOffset(val),
+  order: val => setOrder(val),
   hide: shouldHide => css`
     display: ${shouldHide ? 'none' : null};
   `,
